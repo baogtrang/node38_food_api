@@ -1,11 +1,13 @@
 import express from "express";
+import likeRoutes from "./src/routes/likeRoutes.js";
 
 const app = express();
-const port = 8080;
-
 app.use(express.json());
-app.get("/", (req, res) => res.send("Hello world"));
 
+// mount likeRoutes on the "/api" path
+app.use("/api", likeRoutes);
+
+const port = 8080;
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
