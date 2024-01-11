@@ -1,11 +1,11 @@
 import express from "express";
-import likeRoutes from "./src/routes/likeRoutes.js";
+import rootRouter from "./src/routes/rootRoutes.js";
 
 const app = express();
 app.use(express.json());
 
 // mount likeRoutes on the "/api" path
-app.use("/api", likeRoutes);
+app.use("/api", rootRouter);
 
 const port = 8080;
 app.listen(port, () => {

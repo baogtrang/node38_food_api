@@ -1,12 +1,18 @@
 import express from "express";
+import {
+  getLikesByUser,
+  getLikesForRestaurant,
+  likeRestaurant,
+  unlikeRestaurant,
+} from "../controllers/likeControllers.js";
 
 const likeRoutes = express.Router();
 
 // post request to LIKE a restaurant
-likeRoutes.post("/like", likeController);
+likeRoutes.post("/likeRestaurant", likeRestaurant);
 
 // delete request to UNLIKE a restaurant
-likeRoutes.delete("/unlike", unlikeController);
+likeRoutes.delete("/unlikeRestaurant", unlikeRestaurant);
 
 // route to get all likes for a restaurant
 likeRoutes.get("/restaurant/:restaurantId", getLikesForRestaurant);

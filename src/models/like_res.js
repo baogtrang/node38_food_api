@@ -1,49 +1,97 @@
-import _sequelize from 'sequelize';
+import _sequelize from "sequelize";
 const { Model, Sequelize } = _sequelize;
 
 export default class like_res extends Model {
   static init(sequelize, DataTypes) {
-  return super.init({
-    user_id: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      references: {
-        model: 'users',
-        key: 'user_id'
-      }
-    },
-    res_id: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      references: {
-        model: 'restaurant',
-        key: 'res_id'
-      }
-    },
-    date_like: {
-      type: DataTypes.DATEONLY,
-      allowNull: true
-    }
-  }, {
-    sequelize,
-    tableName: 'like_res',
-    timestamps: false,
-    indexes: [
+    return super.init(
       {
-        name: "user_id",
-        using: "BTREE",
-        fields: [
-          { name: "user_id" },
-        ]
+        user_id: {
+          type: DataTypes.INTEGER,
+          allowNull: true,
+          references: {
+            model: "users",
+            key: "user_id",
+          },
+          primaryKey: true, // if this is part of a composite primary key
+        },
+        res_id: {
+          type: DataTypes.INTEGER,
+          allowNull: true,
+          references: {
+            model: "restaurant",
+            key: "res_id",
+          },
+          primaryKey: true, // if this is part of a composite primary key
+        },
+        date_like: {
+          type: DataTypes.DATEONLY,
+          allowNull: true,
+        },
       },
       {
-        name: "res_id",
-        using: "BTREE",
-        fields: [
-          { name: "res_id" },
-        ]
-      },
-    ]
-  });
+        sequelize,
+        tableName: "like_res",
+        timestamps: false,
+        indexes: [
+          {
+            name: "user_id",
+            using: "BTREE",
+            fields: [{ name: "user_id" }],
+          },
+          {
+            name: "res_id",
+            using: "BTREE",
+            fields: [{ name: "res_id" }],
+          },
+        ],
+      }
+    );
   }
 }
+
+// export default class like_res extends Model {
+//   static init(sequelize, DataTypes) {
+//   return super.init({
+//     user_id: {
+//       type: DataTypes.INTEGER,
+//       allowNull: true,
+//       references: {
+//         model: 'users',
+//         key: 'user_id'
+//       }
+//     },
+//     res_id: {
+//       type: DataTypes.INTEGER,
+//       allowNull: true,
+//       references: {
+//         model: 'restaurant',
+//         key: 'res_id'
+//       }
+//     },
+//     date_like: {
+//       type: DataTypes.DATEONLY,
+//       allowNull: true
+//     }
+//   }, {
+//     sequelize,
+//     tableName: 'like_res',
+//     timestamps: false,
+//     indexes: [
+//       {
+//         name: "user_id",
+//         using: "BTREE",
+//         fields: [
+//           { name: "user_id" },
+//         ]
+//       },
+//       {
+//         name: "res_id",
+//         using: "BTREE",
+//         fields: [
+//           { name: "res_id" },
+//         ]
+//       },
+//     ]
+//   });
+//   }
+// }
