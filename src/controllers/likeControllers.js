@@ -12,7 +12,7 @@ const likeRestaurant = async (req, res) => {
       where: { user_id: userId, res_id: restaurantId },
     });
     if (existingLike) {
-      return res.status(400).send("Already liked this restaurant");
+      return res.status(400).send("The user already liked this restaurant");
     }
     const like = await like_res.create({
       user_id: userId,
